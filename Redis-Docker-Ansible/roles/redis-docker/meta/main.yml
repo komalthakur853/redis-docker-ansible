@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: komal
+  description: Role to install and run Redis in Docker container
+  license: MIT
+  min_ansible_version: 2.9
+
+dependencies: []
+

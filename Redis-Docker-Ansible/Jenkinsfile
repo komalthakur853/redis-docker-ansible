@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    environment {
+        ANSIBLE_INVENTORY = 'inventory.ini'
+        ANSIBLE_PLAYBOOK = 'playbook.yml'
+        SSH_CREDENTIALS = 'jenkins-ssh-key'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/redis-docker-ansible.git'
+            }
+        }
+        stage('Run Ansible Playbook') {
+            steps {
+                sshagent (credentials: [SSH_CREDENTIALS]) {
+                    ansiblePlaybook(
+                        playbook: "${ANSIBLE_PLAYBOOK}",
+                        inventory: "${ANSIBLE_INVENTORY}",
+                        become: true
+                    )
+                }
+            }
+        }
+    }
+}
+

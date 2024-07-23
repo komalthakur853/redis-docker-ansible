@@ -1,0 +1,16 @@
+---
+- name: Pull Redis Docker image on Red Hat
+  docker_image:
+    name: redis
+    source: pull
+  become: yes
+
+- name: Run Redis container on Red Hat
+  docker_container:
+    name: redis
+    image: redis
+    state: started
+    ports:
+      - "6379:6379"
+  become: yes
+

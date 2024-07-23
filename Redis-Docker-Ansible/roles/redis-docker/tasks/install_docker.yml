@@ -1,0 +1,23 @@
+---
+- name: Install Docker on Red Hat
+  yum:
+    name: docker
+    state: present
+  when: ansible_facts['os_family'] == 'RedHat'
+  become: yes
+
+- name: Install Docker on Ubuntu
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
+  when: ansible_facts['os_family'] == 'Debian'
+  become: yes
+
+- name: Start and enable Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes
+

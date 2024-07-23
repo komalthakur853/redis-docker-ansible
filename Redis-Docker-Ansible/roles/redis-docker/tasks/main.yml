@@ -1,0 +1,7 @@
+---
+- name: Ensure Docker is installed
+  include_tasks: install_docker.yml
+
+- name: Include OS-specific tasks
+  include_tasks: "{{ ansible_facts['os_family'] | lower }}.yml"
+
