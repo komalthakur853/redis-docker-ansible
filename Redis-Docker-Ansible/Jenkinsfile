@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/redis-docker-ansible.git'
+                git 'https://github.com/komalthakur853/redis-docker-ansible.git'
             }
         }
         stage('Run Ansible Playbook') {
